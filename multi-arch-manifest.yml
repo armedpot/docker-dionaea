@@ -1,0 +1,17 @@
+image: armedpot/docker-dionaea:latest
+manifests:
+  - image: armedpot/docker-dionaea:latest-amd64
+    platform:
+      architecture: amd64
+      os: linux
+  - image: armedpot/docker-dionaea:latest-arm64v8
+    platform:
+      architecture: arm64
+      os: linux
+      variant: v8
+  - image: armedpot/docker-dionaea:latest-arm32v7
+    platform:
+      architecture: arm
+      os: linux
+      variant: v7
+      
