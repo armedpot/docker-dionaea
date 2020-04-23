@@ -45,7 +45,7 @@ ADD dist/ /root/dist/
 COPY --from=Buildstage /opt/dionaea /opt/dionaea
 
 # Setup user and groups
-RUN apk add--no-cache --update-cache \
+RUN apk add --no-cache --update-cache \
       ca-certificates \
       python3 \
       py3-bson \
