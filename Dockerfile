@@ -45,11 +45,13 @@ ADD dist/ /root/dist/
 COPY --from=Buildstage /opt/dionaea /opt/dionaea
 
 # Setup user and groups
-RUN apk add --no-cache --update-cache \
+RUN apk add --no-cache --update-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
       ca-certificates \
       python3 \
+      python3-dev \
       py3-bson \
-      pyt3-yaml \
+      py3-yaml \
+      libcap \
       libcurl \
       libx86emu \
       libev \
@@ -60,7 +62,7 @@ RUN apk add --no-cache --update-cache \
       udns && \
     # Setup user, groups and config
     addgroup --gid 2000 dionaea && \
-    adduser --system --no-create-home --shell /bin/bash --uid 2000 --disabled-password --disabled-login --gid 2000 dionaea && \
+    adduser -S -H -s /bin/ash -u 2000 -D -g 2000 dionaea && \
     setcap cap_net_bind_service=+ep /opt/dionaea/bin/dionaea && \
     # Supply configs and set permissions
     chown -R dionaea:dionaea /opt/dionaea && \
