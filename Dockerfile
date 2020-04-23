@@ -26,8 +26,7 @@ RUN apt-get -y update && \
         python3 \
         python3-dev \
         python3-bson \
-        python3-yaml \
-        ttf-liberation && \
+        python3-yaml &&\
     # Get and install dionaea
     git clone --depth=1 https://github.com/dinotools/dionaea -b 0.8.0 /tmp/dionaea/ && \
     cd /tmp/dionaea && \
