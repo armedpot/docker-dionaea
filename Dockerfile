@@ -39,7 +39,7 @@ RUN apt-get -y update && \
 FROM alpine:latest
 
 # Include dist
-COPY dist/ /root/dist/
+ADD dist/ /root/dist/
 
 # Copy Dionaea from Buildstage
 COPY --from=Buildstage /opt/dionaea /opt/dionaea
