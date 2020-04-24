@@ -39,7 +39,7 @@ RUN apt-get -y update && \
 FROM alpine:latest
 
 # Include dist
-ADD dist/ /root/dist/
+copy /dist/* /tmp/dist/
 
 # Copy Dionaea from Buildstage
 COPY --from=Buildstage /opt/dionaea /opt/dionaea
@@ -67,9 +67,9 @@ RUN apk add --no-cache --update-cache -X http://dl-cdn.alpinelinux.org/alpine/ed
     # Supply configs and set permissions
     chown -R dionaea:dionaea /opt/dionaea && \
     rm -rf /opt/dionaea/etc/dionaea/* && \
-    mv /root/dist/etc/* /opt/dionaea/etc/dionaea/ && \
+    mv /tmp/dist/etc/* /opt/dionaea/etc/dionaea/ && \
     # Clean up
-    rm -rf /root/* /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    rm -rf /root/* /tmp/* /var/tmp/*
 
 # Set workdir, stopsignal and start dionaea
 STOPSIGNAL SIGKILL
